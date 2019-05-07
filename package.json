@@ -1,0 +1,21 @@
+{
+  "name": "deliverypro",
+  "version": "1.0.0",
+  "description": "Gestor de pedidos online",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "felipejofreq@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.3",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.9.1"
+  }
+}
