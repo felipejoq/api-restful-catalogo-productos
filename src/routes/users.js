@@ -72,7 +72,8 @@ router.post('/users', [verificaToken, verificaAdmin_Role], async(req, res) => {
 
     user.save((err, userDB) => {
         if (err) { return res.status(400).json({ ok: false, errors: err }) }
-        return res.json({ ok: true, usuario: userDB });
+        // Enviar un correo de verificación
+        return res.status(201).json({ ok: true, usuario: userDB });
     });
 });
 
@@ -99,6 +100,7 @@ router.put('/users/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
 
         if (userDB.email !== email) {
             userDB.verify = false;
+            // Enviar un nuevo correo de verificación.
         }
 
         if (role) { userDB.role = role; }

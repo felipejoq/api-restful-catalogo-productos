@@ -22,7 +22,7 @@ router.post('/login', (req, res) => {
         if (!userDB) {
             return res.status(400).json({
                 ok: false,
-                errors: {
+                error: {
                     message: "Usuario o contraseña incorrectos"
                 }
             });
@@ -44,7 +44,8 @@ router.post('/login', (req, res) => {
         res.json({
             ok: true,
             user: userDB,
-            token
+            token: token,
+            expires_at: new Date().getTime() + new Date().setHours(48)
         });
     });
 });

@@ -22,7 +22,7 @@ app.get('/product', (req, res) => {
     let from = req.query.from || 0;
     from = Number(from);
 
-    let limit = req.query.limit || 5;
+    let limit = req.query.limit || 6;
     limit = Number(limit);
 
     Producto.find({ status })
@@ -69,13 +69,10 @@ app.get('/product/:id', (req, res) => {
 
 });
 
-// Middleware de protección de recurso mediante token y rol.
-app.use([verificaToken, verificaAdmin_Role]);
-
 /**
  * Método que crea un recurso o documento del tipo Producto en la base de datos.
  */
-app.post('/product', (req, res) => {
+app.post('/product', [verificaToken, verificaAdmin_Role], (req, res) => {
     let body = req.body;
 
     if (!req.files) {
@@ -120,7 +117,7 @@ app.post('/product', (req, res) => {
 
 });
 
-app.put('/product/:id', (req, res) => {
+app.put('/product/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
 
     let id = req.params.id;
 
@@ -171,7 +168,7 @@ app.put('/product/:id', (req, res) => {
 
 });
 
-app.delete('/product/:id', (req, res) => {
+app.delete('/product/:id', [verificaToken, verificaAdmin_Role], (req, res) => {
 
     let id = req.params.id;
     let body = req.body;

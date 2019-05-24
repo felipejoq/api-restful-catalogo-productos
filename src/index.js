@@ -3,11 +3,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
 // Configuraciones
 app.set('port', process.env.PORT || 3000);
 
 //Middlewares
+app.use(cors({origin: 'http://localhost:4200', optionsSuccessStatus: 200}));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
